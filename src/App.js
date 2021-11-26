@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import './App.css';
-import Home from "./components/Home";
+import Home from "./components/home";
 import {Switch, Route} from "react-router-dom";
-import Header from "./components/Header";
-import User from "./components/User";
-import Admin from "./components/Admin";
-import LoggedIn from "./components/LoggedIn";
-import "bootstrap/dist/css/bootstrap/.min.css";
-import NoMatch from "./components/NoMatch";
-
+import Header from "./components/header";
+import User from "./components/user";
+import Admin from "./components/admin";
+import Login from "./components/login";
+import LoggedIn from "./loggedin";
+//import "bootstrap/dist/css/bootstrap/.min.css";
+//import NoMatch from "./components/NoMatch";
 
 function App({ facade }) {
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [LoggedIn, setLoggedIn] = useState(false); 
   const [errorMessage, setErrorMessage] = useState("");
   const [userMessage, setUserMessage] = useState("");
 
@@ -43,12 +43,12 @@ function App({ facade }) {
           </Route>
 
           <Route exact path = "/user">
-            {facade.hasUserAcces("user", LoggedIn)&& (<User userMessage={userMessage} setUserMessage={setUserMEssage} />
+            {facade.hasUserAcces("user", LoggedIn)&& (<User userMessage={userMessage} setUserMessage={setUserMEssage} /> 
             )}
           </Route>
 
           <Route exact path="/admin">
-            {facade.hasUserAcces("admin", LoggedIn)&&(
+            {facade.hasUserAcces("admin", LoggedIn)&&( 
               <Admin userMessage={userMessage} setUserMessage={setUserMessage} />
             )}
           </Route>
