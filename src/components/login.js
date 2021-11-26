@@ -1,4 +1,4 @@
-import {usestate} from "react";
+import React,{useState, useEffect} from "react";
 
 export default function Login({ facade, setLoggedIn, setErrorMessage })
 
@@ -8,7 +8,7 @@ export default function Login({ facade, setLoggedIn, setErrorMessage })
     const doLogin = (evt) =>
     {
         evt.preventDefault();
-        facade.login(loginCredentials.username, loginCredentials.password, setLoggedIn, setErrorMessage)
+        facade.login(loginCredentials.username, loginCredentials.password, setLoggedIn, setErrorMessage).then(r => {})
     }
     const onChange = (evt) =>
     {

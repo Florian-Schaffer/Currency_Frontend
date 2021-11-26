@@ -75,7 +75,7 @@ const makeOptions = (method, addtoken, body) => {
             Accept: "application/json",
         },
     };
-    if(addToken && loggedIn()){
+    if(addtoken && loggedIn()){
         opts.headers["x-access-token"] = getToken();
     }
     if (body){

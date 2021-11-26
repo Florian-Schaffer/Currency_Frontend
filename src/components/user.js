@@ -5,3 +5,5 @@ function user() {
         </div>
     );
 }
+
+export default user;
