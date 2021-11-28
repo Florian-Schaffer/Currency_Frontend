@@ -10,6 +10,8 @@ import loggedIn from "./components/loggedin";
 //import "bootstrap/dist/css/bootstrap/.min.css";
 import NoMatch from "./components/NoMatch";
 import facade from "./apiFacade";
+import currency from "./components/currency";
+import result from "./components/result";
 
 function App({ facade }) {
   const [LoggedIn, setLoggedIn] = useState(false); 
@@ -44,6 +46,10 @@ function App({ facade }) {
           <Route exact path = "/user" element ={user} />
 
           <Route exact path="/admin" element={admin}/>
+
+          <Route exact path="/currency" element={currency}/>
+
+          <Route exact path="/result" element={result}/>
 
           <Route path ="*" element={<NoMatch/>}/>
 
