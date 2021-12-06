@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import Home from "./components/home";
-import {Routes, Route} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import Header from "./components/header";
 import user from "./components/user";
 import admin from "./components/admin";
@@ -10,11 +10,14 @@ import loggedIn from "./components/loggedin";
 //import "bootstrap/dist/css/bootstrap/.min.css";
 import NoMatch from "./components/NoMatch";
 import facade from "./apiFacade";
-import currency from "./components/currency";
+import Currency from "./components/currency";
 import result from "./components/result";
 
-function App({ facade }) {
-  const [LoggedIn, setLoggedIn] = useState(false); 
+
+console.log("Facade fra APP.JS");
+console.log(facade);
+function App() {
+  const [loggedIn, setLoggedIn] = useState(false); 
   const [errorMessage, setErrorMessage] = useState("");
   const [userMessage, setUserMessage] = useState("");
 
@@ -29,32 +32,36 @@ function App({ facade }) {
       facade.login(user, pass, setLoggedIn, setErrorMessage);
     };
 
+    //<Route path='/' element={<Home />} />
     return (
       <div>
         <Header facade = {facade} />
-        <Routes>
-          <Route exact path ="/" element={<Home
-          /*loggedIn={loggedIn}
+        <Switch>
+          <Route exact path ="/" >
+          <Home
+          facade={facade}
+          loggedIn={loggedIn}
             errorMessage={errorMessage}
             login={login}
             logout ={logout} 
             setLoggedIn = {setLoggedIn}
-            setErrorMessage = {setErrorMessage}*/
-            />} />
+            setErrorMessage = {setErrorMessage} />
+            </Route>
 
 
           <Route exact path = "/user" element ={user} />
 
           <Route exact path="/admin" element={admin}/>
 
-          <Route exact path="/currency" element={currency}/>
+          <Route exact path="/currency">
+            <Currency/>
+          </Route>
 
           <Route exact path="/result" element={result}/>
 
           <Route path ="*" element={<NoMatch/>}/>
 
-
-        </Routes>
+        </Switch>
       </div>
     );  
 }

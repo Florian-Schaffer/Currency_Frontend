@@ -1,6 +1,6 @@
 import {Routes, Route} from "react-router-dom";
 
-function currency() {
+function Currency() {
     return (
         <div>
             <ul className="currency">
@@ -45,4 +45,4 @@ function currency() {
     }
 }
 
-export default currency();
+export default Currency;

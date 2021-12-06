@@ -1,4 +1,4 @@
-const URL = "https://localhost:8080/ca2_war_exploded";
+const URL = "http://localhost:8080/Currency/";
 
 function handleHttpErrors(res){
     if(!res.ok){
