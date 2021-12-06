@@ -7,6 +7,8 @@ export default function Login({ facade, setLoggedIn, setErrorMessage })
     const [loginCredentials, setLoginCredentials] = useState(init);
     const doLogin = (evt) =>
     {
+        console.log(loginCredentials)
+        console.log(facade)
         evt.preventDefault();
         facade.login(loginCredentials.username, loginCredentials.password, setLoggedIn, setErrorMessage).then(r => {})
     }
