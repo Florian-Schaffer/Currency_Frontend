@@ -7,31 +7,30 @@ import {
     useParams,
     useRouteMatch,
     NavLink,
-    Prompt, useNavigate
+    Prompt, useHistory
 } from "react-router-dom";
 import loggedIn from "./loggedin";
-import authUtility from "../authorizationUtility";
 
- const Header = ({loggedIn, getUserRoles, setCurrentRoles, onLogout})=>{
-     const navigate = useNavigate();
+
+
+ const Header = ({facade})=>{
+     const history = useHistory();
 
      const onClick= () => {
-         onLogout()
-         setCurrentRoles([])
-         navigate('/')
+         facade.onLogout()
+         facade.setCurrentRoles([])
+         history.push('/')
      }
 
     return (
         <div>
             <ul className="header">
 
-                <li><NavLink activeClassName='active' to='/'>Home</NavLink></li>
-                {authUtility.handleAccess('user', getUserRoles) && <li><NavLink activeClassName='active' to='/user'>User</NavLink></li>}
-                <li><NavLink activeClassName='active' to='/admin'>Admin</NavLink></li>
-                <li><NavLink exact activeClassName="selected" to="/">Home</NavLink></li>
-                <li><NavLink activeClassName="selected" to="/user">User</NavLink></li>
-                <li><NavLink activeClassName="selected" to="/admin">Admin</NavLink></li>
-                <li><NavLink activeClassName="selected" to="/currency">Currency Converter</NavLink></li>
+                {facade.hasUserAccess('user') && <li><NavLink activeClassName='active' to='/user'>User</NavLink></li>}
+                <li><NavLink exact activeClassName="active" to="/">Home</NavLink></li>
+                <li><NavLink activeClassName="active" to="/user">User</NavLink></li>
+                <li><NavLink activeClassName="active" to="/admin">Admin</NavLink></li>
+                <li><NavLink activeClassName="active" to="/currency">Currency Converter</NavLink></li>
 
             </ul>
         </div>
