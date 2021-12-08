@@ -54,7 +54,8 @@ function App() {
           <Route exact path="/admin" element={admin}/>
 
           <Route exact path="/currency">
-            <Currency/>
+            <Currency facade={facade}/>
+
           </Route>
 
           <Route exact path="/result" element={result}/>

@@ -1,4 +1,4 @@
-const URL = "http://localhost:8080/Currency/";
+const URL = "http://localhost:8080/Currency_Backend_war_exploded/";
 
 function handleHttpErrors(res){
     if(!res.ok){
@@ -49,7 +49,12 @@ const hasUserAccess = (neededRole) => {
 
 const fetchData = (info) => {
     const options = makeOptions("GET", true);
-    return fetch(URL + "/api/use/"+ info, options).then(handleHttpErrors);
+    return fetch(URL + "api/use/"+ info, options).then(handleHttpErrors);
+};
+
+const postData = (body,setAmount) => {
+    const options = makeOptions("POST", true, body);
+    return fetch(URL + "api/currency/convert", options).then(handleHttpErrors).then((res)=>{setAmount(res.amount)});
 };
 
 const setToken = (token) => {
@@ -93,6 +98,7 @@ return {
     fetchData,
     getUserRoles,
     hasUserAccess,
+    postData,
 };
 
 

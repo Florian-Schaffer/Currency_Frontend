@@ -1,15 +1,28 @@
 import {Routes, Route} from "react-router-dom";
+import {useState} from "react";
 
-function Currency() {
+function Currency({facade}) {
+
+    const [amount, setAmount] = useState(0);
+    const [userInput, setUserInput] = useState({from:"DKK", to:"DKK",amount:0})
+
+    const onChange = (evt) =>
+    {
+        setUserInput({ ...userInput, [evt.target.id]: evt.target.value })
+    }
+
+
     return (
         <div>
             <ul className="currency">
                 <h1>Currency Component</h1>
             </ul>
             <br></br>
+        
+            <form onChange={onChange}>
         <label for="currencyfrom">Choose a currency to convert from:</label>
-
-        <select name="currencyfrom" id="currency_from">
+        
+        <select name="currencyfrom" id="from">
             <option value="DKK">Danish Krone (DKK)</option>
             <option value="USD">US Dollar (USD)</option>
             <option value="RUB">Russian Ruble (RUB)</option>
@@ -19,7 +32,7 @@ function Currency() {
         <br></br>
         <label for="currencyto">Choose a currency to convert to:</label>
 
-        <select name="currencyto" id="currency_to">
+        <select name="currencyto" id="to">
             <option value="DKK">Danish Krone (DKK)</option>
             <option value="USD">US Dollar (USD)</option>
             <option value="RUB">Russian Ruble (RUB)</option>
@@ -27,21 +40,34 @@ function Currency() {
         </select>
 
 
-        <form>
-            <label for="currency_amount">Amount to convert:</label> <br></br>
-            <input type="number" id="currency_amount" name="amount"/>
+        
+            <label for="amount">Amount to convert:</label> <br></br>
+            <input type="number" id="amount" name="Amount"/>
         </form> <br></br>
 
-        <button id="subButton" type="button" onClick="getInput()">Convert</button>
+        <button id="subButton" type="button" onClick={getInput}>Convert</button>
+
+        <p>amount:{amount}</p>
+        
+        <p>
+        {JSON.stringify(userInput)}
+        </p>
 
         </div>
 
     );
+
+    
+
+
     function getInput() {
-        var currencyFromField = document.getElementById('currencyfrom').value;
-        var currencyToField = document.getElementById('currencyto').value;
-        var currencyAmount = document.getElementById('currency_amount').value;
-        window.location.href = "/resultpage"
+        facade.postData(
+            {"amount": userInput.amount,
+            "from":userInput.from,
+            "to":userInput.to},
+            setAmount,
+            )
+
     }
 }
 
