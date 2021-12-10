@@ -1,8 +1,8 @@
-const URL = "http://localhost:8080/Currency_Backend_war_exploded/";
+const URL = "http://localhost:8080/Currency/";
 
 function handleHttpErrors(res){
     if(!res.ok){
-        return Promise.recejt({status: res.status, fullError: res.json() });
+        return Promise.reject({status: res.status, fullError: res.json() });
     }
     return res.json();
 }

@@ -39,7 +39,7 @@ function Currency({facade}) {
             <option value="EUR">Euro (EUR)</option>
         </select>
 
-
+            <br/>
         
             <label for="amount">Amount to convert:</label> <br></br>
             <input type="number" id="amount" name="Amount"/>
@@ -47,7 +47,7 @@ function Currency({facade}) {
 
         <button id="subButton" type="button" onClick={getInput}>Convert</button>
 
-        <p>amount:{amount}</p>
+        <p>Conversion:{amount}</p>
         
         <p>
         {JSON.stringify(userInput)}
